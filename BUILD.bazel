@@ -1,0 +1,28 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+    name = "gdstk",
+    srcs = glob(
+        [
+            "src/*.cpp",
+            "external_bzl/**/*.cpp",
+        ],
+    ),
+    hdrs = glob(
+        [
+            "include/gdstk/*.hpp",
+            "external_bzl/**/*.hpp",
+        ],
+    ),
+    includes = [
+        "external_bzl/",
+        "include/",
+    ],
+    visibility = [
+        "//visibility:public",  # Makes the library visible to other targets
+    ],
+    deps = [
+        "@qhull//:qhull_r",
+        "@zlib",
+    ],
+)
